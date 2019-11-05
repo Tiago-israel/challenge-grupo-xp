@@ -30,13 +30,12 @@ export default function reducer(state = initialState, action) {
 
 //Actions Creator
 
-// export function findAlbums(search) {
-//   debugger;
-//   return {
-//     type: Types.ALBUM_REQUEST,
-//     payload: "y"
-//   };
-// }
+export function findAlbums(search) {
+  return {
+    type: Types.ALBUM_REQUEST,
+    payload: search
+  };
+}
 
 export function findAlbumsSuccess(albums) {
   return {

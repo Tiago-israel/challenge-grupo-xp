@@ -3,18 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchInput from "../../components/search-input";
 import AlbumList from "./styles";
 import Album from "../../components/album/Index";
-import { Types as AlbumsTypes } from "../../store/ducks/albums";
+import * as Actions from "../../store/ducks/albums";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { albums } = useSelector(state => state.albums);
 
   const searchAlbums = useCallback(
-    event =>
-      dispatch({
-        type: AlbumsTypes.ALBUM_REQUEST,
-        payload: event.target.value
-      }),
+    event => dispatch(Actions.findAlbums(event.target.value)),
     [dispatch]
   );
 

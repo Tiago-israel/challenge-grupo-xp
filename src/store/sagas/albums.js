@@ -17,7 +17,6 @@ export function* findAlbums({ payload: search }) {
       }));
       yield put(findAlbumsSuccess(result));
     } catch (e) {
-      debugger;
       console.log(e);
     }
   }
