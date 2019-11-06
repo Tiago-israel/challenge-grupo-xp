@@ -42,6 +42,17 @@ module.exports = env => {
         template: "public/index.html"
       }),
       new webpack.DefinePlugin(envKeys)
-    ]
+    ],
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            chunks: "all"
+          }
+        }
+      }
+    }
   };
 };
