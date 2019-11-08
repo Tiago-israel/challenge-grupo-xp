@@ -15,7 +15,6 @@ module.exports = env => {
     prev[`process.env.${next}`] = JSON.stringify(fileEnv[next]);
     return prev;
   }, {});
-
   return {
     entry: "./src/index.js",
     output: {
@@ -39,7 +38,7 @@ module.exports = env => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: "public/index.html"
+        template: path.join(__dirname, "public", "index.html")
       }),
       new webpack.DefinePlugin(envKeys)
     ],

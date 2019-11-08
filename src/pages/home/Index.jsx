@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchInput from "../../components/search-input";
-import AlbumList from "./styles";
+import { Section, Link } from "./styles";
 import Album from "../../components/album/Index";
 import * as Actions from "../../store/ducks/albums";
 
@@ -13,7 +13,6 @@ const Home = () => {
     event => dispatch(Actions.findAlbums(event.target.value)),
     [dispatch]
   );
-
   return (
     <div>
       <SearchInput
@@ -21,11 +20,13 @@ const Home = () => {
         placeholder="Comece a escrever..."
         onSearch={searchAlbums}
       />
-      <AlbumList>
-        {albums.map((album, key) => (
-          <Album key={key} album={album} />
+      <Section>
+        {albums.map(album => (
+          <Link key={album.id} to={`/album/${album.id}`}>
+            <Album album={album} />
+          </Link>
         ))}
-      </AlbumList>
+      </Section>
     </div>
   );
 };

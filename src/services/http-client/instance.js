@@ -5,6 +5,6 @@ const instance = axios.create({
 });
 
 instance.defaults.headers.common["Authorization"] =
-  "Bearer BQBWGOZxNbeusnxhtOZyZK2LbEzZhSHsA23tHm7GoVyr1qj9sH8KPrLFLIato7nEsDeCCQfBKC2za9mhHhKLWsXtwg_FNcYVmmpgW47CAgtDDJvRgCRoXHHt2mGeUAJQ-faV-jNC4je1Ftg";
+  "Bearer BQCMuET0UD9cl3R1Wvkd3E5_EVnCMy3cGOppdfnzeGTqLUhsx4kvBLS1liZgY9brmcyzsKCbGdLfDuuS8ixuUxOUCpKH-Ddrh2GpFXCdtLBWMb49oc7zBzO86axkY8xwoA01e1eojIp9GAs";
 
 export default instance;

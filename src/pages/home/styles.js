@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-const AlbumList = styled.section`
+export const Section = styled.section`
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -9,4 +10,6 @@ const AlbumList = styled.section`
   align-items: center;
 `;
 
-export default AlbumList;
+export const Link = styled(NavLink)`
+  text-decoration: none;
+`;

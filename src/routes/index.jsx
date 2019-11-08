@@ -1,12 +1,16 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import Home from "../pages/home";
+
+//const AlbumDetail = lazy(() => import("../pages/album-details/Index"));
+import AlbumDetail from "../pages/album-details/Index";
 
 const Routes = () => (
   <HashRouter>
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/album/:id" component={AlbumDetail} />
       </Switch>
     </Suspense>
   </HashRouter>
