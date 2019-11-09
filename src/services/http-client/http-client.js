@@ -5,7 +5,9 @@ export default class HttpClient {
     this.resource = resource;
   }
 
-  get = (action = "") => {
-    return axios.get(`${this.resource}${action}`);
+  get = (action = "", token) => {
+    return axios.get(`${this.resource}${action}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
   };
 }
