@@ -4,6 +4,8 @@ import Album from "../../components/album/Index";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Container, Time, TrackNumber } from "./styles";
+import AudioPlayer from "../../components/audio-player/Index";
+import Sound, { PlayStatus } from "react-sound";
 const AlbumDetail = ({ match, album }) => {
   const { params } = match;
   const { tracks: { items = [] } = {} } = album;
@@ -24,7 +26,10 @@ const AlbumDetail = ({ match, album }) => {
             <Time>{track.duration}</Time>
           </Container>
         ))}
-        <audio controls></audio>
+        <Sound
+          url="https://p.scdn.co/mp3-preview/e3fffa13430292c5df046a768db90a03c61f643a?cid=774b29d4f13844c495f206cafdad9c86"
+          playStatus="PLAYING"
+        />
       </div>
     </div>
   );

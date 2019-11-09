@@ -5,9 +5,11 @@ export const Container = styled.div`
 `;
 
 export const TrackNumber = styled.span`
-  margin-right: 10px;
+  margin-right: 15px;
+  color: #999999;
 `;
 
 export const Time = styled.span`
   float: right;
+  color: #999999;
 `;
