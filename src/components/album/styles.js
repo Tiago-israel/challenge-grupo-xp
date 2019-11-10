@@ -8,6 +8,11 @@ export const Container = styled.div`
     max-width: 100%;
     display: block;
   }
+
+  &:hover {
+    background-color: #000000;
+    opacity: 0.5;
+  }
 `;
 
 export const AlbumName = styled.p`

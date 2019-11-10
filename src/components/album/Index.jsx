@@ -1,10 +1,11 @@
 import React from "react";
 import { Container, AlbumName, Artist } from "./styles";
-const Album = ({ album }) => {
+import BackGround from "../../assets/img/backgroung.png";
+const Album = ({ album, imageDefault }) => {
   const { name = "", artists = "", images = [] } = album;
   return (
     <Container>
-      <img src={images[0]?.url} alt="album" />
+      <img src={images[0]?.url || BackGround} alt="album" />
       <AlbumName>{name}</AlbumName>
       <Artist>{artists}</Artist>
     </Container>

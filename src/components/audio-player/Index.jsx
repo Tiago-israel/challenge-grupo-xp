@@ -28,6 +28,7 @@ const AudioPlayer = ({ audio_url, track_name = "", status }) => {
       <Current>
         <div>
           <span>{track_name}</span>
+          {track_name && !audio_url && <span>(música indisponível)</span>}
         </div>
       </Current>
       <Sound url={audio_url || ""} playStatus={status} />
