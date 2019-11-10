@@ -5,7 +5,9 @@ import {
   albumDetailSuccess,
   opeModal
 } from "../ducks/albums";
+import * as LastSearchActions from "../ducks/last-search";
 import minutesFormatter from "../../services/minute-formatter";
+
 export function* findAlbums(action) {
   const {
     payload: { search = "", token = "" }
@@ -14,7 +16,7 @@ export function* findAlbums(action) {
   if (!token) {
     yield put(opeModal());
   }
-  if (search) {
+  if (search.trim()) {
     try {
       const {
         data: { albums }
@@ -29,7 +31,6 @@ export function* findAlbums(action) {
         name,
         artists: artists.map(a => a.name).join(", ")
       }));
-
       yield put(findAlbumsSuccess(result));
     } catch (e) {
       if (e.request?.status === 401) {
@@ -44,9 +45,11 @@ export function* findAlbums(action) {
 export function* albumDetails({ payload: { id, token } }) {
   const api = httpClient("albums/");
   const { data } = yield call(api.get, id, token);
-  const { images, tracks, artists, name } = data;
+  const { images, tracks, artists, name, id: idAlbum } = data;
+  yield put(LastSearchActions.saveAlbum({ images, tracks, name, id: idAlbum }));
   yield put(
     albumDetailSuccess({
+      id: idAlbum,
       images,
       name,
       tracks: {

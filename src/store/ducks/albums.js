@@ -15,7 +15,6 @@ const initialState = {
   loading: false,
   search: "",
   albums: [],
-  copiaAlbums: [],
   album: {},
   showModal: false
 };
