@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { Container, Progress, Controls, Current } from "./styles";
+import PlayIcon from "../../assets/icons/play.svg";
+import PauseIcon from "../../assets/icons/pause.svg";
+import Sound from "react-sound";
+import * as PLayerActions from "../../store/ducks/player";
 
-const onPlay = second => {
-  console.log(second);
-};
-
-const AudioPlayer = props => {
-  const audio = new Audio();
-  audio.src;
+const AudioPlayer = ({ audio_url, track_name = "", status }) => {
+  const dispatch = useDispatch();
+  const play = useCallback(() => dispatch(PLayerActions.playAudio()));
+  const pause = useCallback(() => dispatch(PLayerActions.pauseAudio()));
   return (
-    <div>
-      <audio onPlay={onPlay} controls>
-        <source src={props.source} />
-      </audio>
-    </div>
+    <Container>
+      <Progress>
+        <Controls>
+          {!!audio_url && status === PLayerActions.PlayStatus.Playing ? (
+            <button onClick={pause}>
+              <img src={PauseIcon} alt="pause" />
+            </button>
+          ) : (
+            <button onClick={play}>
+              <img src={PlayIcon} alt="play" />
+            </button>
+          )}
+        </Controls>
+      </Progress>
+      <Current>
+        <div>
+          <span>{track_name}</span>
+        </div>
+      </Current>
+      <Sound url={audio_url || ""} playStatus={status} />
+    </Container>
   );
 };
 

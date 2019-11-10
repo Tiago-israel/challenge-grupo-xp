@@ -1,42 +1,78 @@
 import React, { useEffect } from "react";
 import * as Actions from "../../store/ducks/albums";
+import * as PLayerActions from "../../store/ducks/player";
 import Album from "../../components/album/Index";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Container, Time, TrackNumber } from "./styles";
+import { Container, Time, TrackNumber, Track, Back } from "./styles";
+import Link from "../../components/link";
 import AudioPlayer from "../../components/audio-player/Index";
-import Sound, { PlayStatus } from "react-sound";
-const AlbumDetail = ({ match, album }) => {
+
+const AlbumDetail = ({
+  match,
+  album,
+  audio_url,
+  token,
+  track_name,
+  status
+}) => {
   const { params } = match;
   const { tracks: { items = [] } = {} } = album;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(Actions.albumDetail(params));
+    dispatch(Actions.albumDetail(params, token));
+    dispatch(PLayerActions.clearTrack());
   }, []);
+
+  const setAudio = (url, track_name) => {
+    return () => {
+      dispatch(PLayerActions.loadAudio(url, track_name));
+    };
+  };
 
   return (
     <div>
-      <Album album={album} />
-      <div>
-        {items.map(track => (
-          <Container key={track.id}>
-            <TrackNumber>{track.track_number}.</TrackNumber>
-            <span>{track.name}</span>
-            <Time>{track.duration}</Time>
-          </Container>
-        ))}
-        <Sound
-          url="https://p.scdn.co/mp3-preview/e3fffa13430292c5df046a768db90a03c61f643a?cid=774b29d4f13844c495f206cafdad9c86"
-          playStatus="PLAYING"
-        />
-      </div>
+      <Back>
+        <Link placeholder="Voltar" to="/">
+          <span>&#60; Voltar</span>
+        </Link>
+      </Back>
+
+      <Container>
+        <div className="div1">
+          <div className="album-cover">
+            <Album album={album} />
+          </div>
+        </div>
+        <div className="div2">
+          {items.map(track => (
+            <Track
+              onClick={setAudio(track.preview_url, track.name)}
+              key={track.id}
+            >
+              <TrackNumber>{track.track_number}.</TrackNumber>
+              <span>{track.name}</span>
+              <Time>{track.duration}</Time>
+            </Track>
+          ))}
+        </div>
+      </Container>
+      <AudioPlayer
+        status={status}
+        audio_url={audio_url}
+        track_name={track_name}
+      />
     </div>
   );
 };
 
-const mapStateToProps = ({ albums }) => ({
-  album: albums.album
+const mapStateToProps = ({ albums, auth, player }) => ({
+  album: albums.album,
+  audio_url: player.audio_url,
+  track_name: player.track_name,
+  status: player.status,
+  token: auth.token
 });
 
 export default connect(mapStateToProps)(AlbumDetail);

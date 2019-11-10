@@ -5,7 +5,8 @@ const SearchInput = props => (
   <>
     <Label>{props.label}</Label>
     <Input
-      onKeyUp={props.onSearch}
+      debounceTimeout={300}
+      onChange={props.onSearch}
       type="text"
       placeholder={props.placeholder}
     />

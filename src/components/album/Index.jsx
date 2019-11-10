@@ -1,13 +1,12 @@
 import React from "react";
-import Container from "./styles";
+import { Container, AlbumName, Artist } from "./styles";
 const Album = ({ album }) => {
-  debugger;
   const { name = "", artists = "", images = [] } = album;
   return (
     <Container>
       <img src={images[0]?.url} alt="album" />
-      <p>{name}</p>
-      <p>{artists}</p>
+      <AlbumName>{name}</AlbumName>
+      <Artist>{artists}</Artist>
     </Container>
   );
 };

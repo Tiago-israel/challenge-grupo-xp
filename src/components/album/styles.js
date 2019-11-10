@@ -1,15 +1,22 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
+  text-align: center;
+  color: #fff;
+  word-break: break-all;
   img {
     max-width: 100%;
     display: block;
   }
+`;
 
-  p {
-    text-align: center;
-    color: #fff;
-  }
+export const AlbumName = styled.p`
+  margin-top: 10px;
+`;
+
+export const Artist = styled.p`
+  margin-top: 5px;
+  color: #999999;
 `;
 
 export default Container;

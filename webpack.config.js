@@ -30,7 +30,11 @@ module.exports = env => {
             loader: "babel-loader"
           }
         },
-        { test: /\.css$/, use: ["style-loader", "css-loader"] }
+        { test: /\.css$/, use: ["style-loader", "css-loader"] },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: ["file-loader"]
+        }
       ]
     },
     resolve: {
@@ -38,7 +42,8 @@ module.exports = env => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, "public", "index.html")
+        template: path.join(__dirname, "public", "index.html"),
+        favicon: "./public/fav.ico"
       }),
       new webpack.DefinePlugin(envKeys)
     ],

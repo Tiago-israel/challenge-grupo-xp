@@ -1,14 +1,20 @@
 import React from "react";
-import GlobalStyle from "./styles/global";
 import { Provider } from "react-redux";
-import store from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./store";
+import GlobalStyle from "./styles/global";
 import Routes from "./routes";
-import Modal from "./components/modal/Index";
+import Container from "./components/container";
+import Header from "./layouts/header/Index";
 
-export default () => (
+export default props => (
   <Provider store={store}>
-    <GlobalStyle />
-    <Modal enable={false} />
-    <Routes />
+    <PersistGate loading={null} persistor={persistor}>
+      <GlobalStyle />
+      <Header />
+      <Container>
+        <Routes />
+      </Container>
+    </PersistGate>
   </Provider>
 );
