@@ -12,11 +12,16 @@ const Home = props => {
   const [token, setToken] = useState("");
   const album = getAlbumByUrl(props);
   const dispatch = useDispatch();
-  const { albums, search, showModal } = useSelector(state => state.albums);
-  const { token: auth } = useSelector(state => state.auth);
 
+  const { token: auth } = useSelector(state => state.auth);
+  const { albums, search, showModal } = useSelector(state => state.albums);
+  const { albums: lastSearchAlbums, search: lastSearch } = useSelector(
+    state => state.lastSearch
+  );
+  const displayAlbums = handleShowAlbums(albums, lastSearchAlbums, search);
   const searchAlbums = useCallback(
-    event => dispatch(AlbumsActions.findAlbums(event.target.value, auth)),
+    event =>
+      dispatch(AlbumsActions.findAlbums(event.target.value.trim(), auth)),
     [dispatch, auth]
   );
 
@@ -29,7 +34,7 @@ const Home = props => {
     if (album) {
       dispatch(AlbumsActions.findAlbums(album, auth));
     }
-  }, [name, auth]);
+  }, [album, auth]);
 
   return (
     <div>
@@ -38,15 +43,16 @@ const Home = props => {
         placeholder="Comece a escrever..."
         onSearch={searchAlbums}
       />
-      {albums.length > 0 && (
-        <TextResult>Resultados encontrados para "{search}"</TextResult>
-      )}
-
-      {albums.length === 0 && (
+      {search && displayAlbums.length === 0 && (
         <TextResult>Nenhum resultado encontrado para "{search}"</TextResult>
       )}
+      {search && displayAlbums.length > 0 ? (
+        <TextResult>Resultados encontrados para "{search}"</TextResult>
+      ) : (
+        <TextResult>Albums buscados recentemente</TextResult>
+      )}
       <Section>
-        {albums.map(album => (
+        {displayAlbums.map(album => (
           <Link key={album.id} to={`/album/${album.id}`}>
             <Album album={album} />
           </Link>
@@ -55,7 +61,6 @@ const Home = props => {
       <Modal enable={showModal}>
         <span>&times;</span>
         <label>Sessão expirada!</label>
-        <br />
         <input
           onKeyUp={e => setToken(e.target.value)}
           placeholder="por favor insira o token"
@@ -69,6 +74,16 @@ const Home = props => {
 function getAlbumByUrl({ match: { params } }) {
   const { name: album } = params;
   return album;
+}
+
+function handleShowAlbums(albums = [], lastSearchAlbums = [], search = "") {
+  if (!search && lastSearchAlbums.length > 0) {
+    return lastSearchAlbums;
+  } else if (albums.length > 0) {
+    return albums;
+  } else {
+    return [];
+  }
 }
 
 export default Home;
