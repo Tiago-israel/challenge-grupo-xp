@@ -43,7 +43,12 @@ module.exports = env => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "public", "index.html"),
-        favicon: "./public/fav.ico"
+        favicon: "./public/fav.ico",
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true
+        }
       }),
       new webpack.DefinePlugin(envKeys)
     ],
