@@ -1,40 +1,24 @@
 import styled from "styled-components";
 
-const Modal = styled.div`
-  display: none;
+export const Modal = styled.div`
   position: fixed;
-  z-index: 1;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-  display: ${props => (props.enable ? "block" : "none")};
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: ${props => (props.enable ? "visible" : "hidden")};
+`;
 
-  span {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-
-    &:hover,
-    :focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-
-  div {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
+export const ModalContent = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #282828;
+  padding: 40px;
+  border-radius: 0.1rem;
+  color: #fff;
 `;
 
 export default Modal;

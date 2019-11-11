@@ -6,7 +6,7 @@ import GlobalStyle from "./styles/global";
 import Routes from "./routes";
 import Container from "./components/container";
 import Header from "./layouts/header/Index";
-
+import Modal from "./components/modal/Index";
 export default props => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

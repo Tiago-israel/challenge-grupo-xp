@@ -1,8 +1,10 @@
 import React from "react";
-import Modal from "./styles";
+import { Modal, ModalContent } from "./styles";
 
-export default props => (
-  <Modal enable={props.enable}>
-    <div>{props.children}</div>
-  </Modal>
-);
+export default props => {
+  return (
+    <Modal enable={props.enable}>
+      <ModalContent>{props.children}</ModalContent>
+    </Modal>
+  );
+};

@@ -6,18 +6,16 @@ import Link from "../../components/link";
 import Album from "../../components/album/Index";
 import * as AlbumsActions from "../../store/ducks/albums";
 import * as AuthActions from "../../store/ducks/auth";
-import Modal from "../../components/modal/Index";
+import ModalToken from "../../components/modal-token/Index";
 
 const Home = props => {
-  const [token, setToken] = useState("");
+  //const [token, setToken] = useState("");
   const album = getAlbumByUrl(props);
   const dispatch = useDispatch();
 
   const { token: auth } = useSelector(state => state.auth);
   const { albums, search, showModal } = useSelector(state => state.albums);
-  const { albums: lastSearchAlbums, search: lastSearch } = useSelector(
-    state => state.lastSearch
-  );
+  const { albums: lastSearchAlbums } = useSelector(state => state.lastSearch);
   const displayAlbums = handleShowAlbums(albums, lastSearchAlbums, search);
   const searchAlbums = useCallback(
     event =>
@@ -25,10 +23,10 @@ const Home = props => {
     [dispatch, auth]
   );
 
-  const sendToken = useCallback(() => {
-    dispatch(AuthActions.setToken(token));
-    dispatch(AlbumsActions.closeModal());
-  }, [dispatch, token]);
+  // const sendToken = useCallback(() => {
+  //   dispatch(AuthActions.setToken(token));
+  //   dispatch(AlbumsActions.closeModal());
+  // }, [dispatch, token]);
 
   useEffect(() => {
     if (album) {
@@ -58,15 +56,7 @@ const Home = props => {
           </Link>
         ))}
       </Section>
-      <Modal enable={showModal}>
-        <span>&times;</span>
-        <label>Sessão expirada!</label>
-        <input
-          onKeyUp={e => setToken(e.target.value)}
-          placeholder="por favor insira o token"
-        />
-        <button onClick={sendToken}>Enviar</button>
-      </Modal>
+      <ModalToken />
     </div>
   );
 };

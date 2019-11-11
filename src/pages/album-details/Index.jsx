@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { Container, Time, TrackNumber, Track, Back } from "./styles";
 import Link from "../../components/link";
 import AudioPlayer from "../../components/audio-player/Index";
+import ModalToken from "../../components/modal-token/Index";
 
 const AlbumDetail = ({
   match,
@@ -34,18 +35,17 @@ const AlbumDetail = ({
   return (
     <div>
       <Back>
-        <Link placeholder="Voltar" to="/">
+        <Link to="/">
           <span>&#60; Voltar</span>
         </Link>
       </Back>
-
       <Container>
         <div className="div1">
           <div className="album-cover">
             <Album album={album} />
           </div>
         </div>
-        <div className="div2">
+        <div>
           {items.map(track => (
             <Track
               onClick={setAudio(track.preview_url, track.name)}
@@ -63,6 +63,7 @@ const AlbumDetail = ({
         audio_url={audio_url}
         track_name={track_name}
       />
+      <ModalToken />
     </div>
   );
 };

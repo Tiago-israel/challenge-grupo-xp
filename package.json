@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --env.ENVIRONMENT=dev --config ./src/config/webpack.dev --port 3000 --open",
     "build": "webpack --env.ENVIRONMENT=prod --config ./src/config/webpack.prod",
-    "test": "jest"
+    "test": "jest --config ./jest.config.js"
   },
   "keywords": [],
   "author": "",
