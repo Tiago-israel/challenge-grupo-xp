@@ -5,11 +5,9 @@ import { Section, TextResult } from "./styles";
 import Link from "../../components/link";
 import Album from "../../components/album/Index";
 import * as AlbumsActions from "../../store/ducks/albums";
-import * as AuthActions from "../../store/ducks/auth";
 import ModalToken from "../../components/modal-token/Index";
 
 const Home = props => {
-  //const [token, setToken] = useState("");
   const album = getAlbumByUrl(props);
   const dispatch = useDispatch();
 
@@ -22,11 +20,6 @@ const Home = props => {
       dispatch(AlbumsActions.findAlbums(event.target.value.trim(), auth)),
     [dispatch, auth]
   );
-
-  // const sendToken = useCallback(() => {
-  //   dispatch(AuthActions.setToken(token));
-  //   dispatch(AlbumsActions.closeModal());
-  // }, [dispatch, token]);
 
   useEffect(() => {
     if (album) {
