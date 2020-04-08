@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchInput from "../../components/search-input";
+import SearchInput from "../../components/search-input/Index";
 import { Section, TextResult } from "./styles";
 import Link from "../../components/link";
 import Album from "../../components/album/Index";
