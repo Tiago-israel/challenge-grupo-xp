@@ -1,23 +1,25 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchInput from "../../components/search-input/Index";
+import SearchInput from "components/search-input";
 import { Section, TextResult } from "./styles";
-import Link from "../../components/link";
-import Album from "../../components/album/Index";
-import * as AlbumsActions from "../../store/ducks/albums";
-import ModalToken from "../../components/modal-token/Index";
+import Link from "components/link";
+import Album from "components/album";
+import * as AlbumsActions from "store/ducks/albums";
+import ModalToken from "components/modal-token/Index";
 
 const Home = props => {
+  document.title = "home";
+
   const album = getAlbumByUrl(props);
   const dispatch = useDispatch();
 
   const { token: auth } = useSelector(state => state.auth);
-  const { albums, search, showModal } = useSelector(state => state.albums);
+  const { albums, search } = useSelector(state => state.albums);
   const { albums: lastSearchAlbums } = useSelector(state => state.lastSearch);
+
   const displayAlbums = handleShowAlbums(albums, lastSearchAlbums, search);
   const searchAlbums = useCallback(
-    event =>
-      dispatch(AlbumsActions.findAlbums(event.target.value.trim(), auth)),
+    value => dispatch(AlbumsActions.findAlbums(value.trim(), auth)),
     [dispatch, auth]
   );
 

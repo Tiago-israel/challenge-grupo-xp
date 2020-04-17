@@ -7,8 +7,18 @@ const Header = styled.header`
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 
-  img {
+  &::after {
+    content: "";
+    width: 39px;
+    height: 23px;
     background-color: #fff;
+    position: relative;
+    top: -40px;
+    right: -10px;
+    z-index: -1;
+  }
+
+  img {
   }
 `;
 

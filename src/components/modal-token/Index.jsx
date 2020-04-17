@@ -5,7 +5,7 @@ import { Input, BtnSendToken } from "./styles";
 import * as AlbumsActions from "../../store/ducks/albums";
 import * as AuthActions from "../../store/ducks/auth";
 
-const ModalToken = props => {
+const ModalToken = () => {
   const dispatch = useDispatch();
   const [token, setToken] = useState("");
   const { showModal } = useSelector(state => state.albums);

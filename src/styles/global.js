@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: #181818;
+        background-color: #121212;
         font-family: 'Roboto', sans-serif;
         text-rendering: optimizeLegibility !important;
         -webkit-font-smoothing:antialiased !important;

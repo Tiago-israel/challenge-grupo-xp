@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import * as Actions from "../../store/ducks/albums";
-import * as PLayerActions from "../../store/ducks/player";
-import Album from "../../components/album/Index";
+import * as Actions from "store/ducks/albums";
+import * as PLayerActions from "store/ducks/player";
+import Album from "components/album";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Container, Time, TrackNumber, Track, Back } from "./styles";
-import Link from "../../components/link";
-import AudioPlayer from "../../components/audio-player/Index";
-import ModalToken from "../../components/modal-token/Index";
+import Link from "components/link";
+import AudioPlayer from "components/audio-player/Index";
+import ModalToken from "components/modal-token/Index";
 
 const AlbumDetail = ({
   match,
@@ -21,10 +21,16 @@ const AlbumDetail = ({
   const { tracks: { items = [] } = {} } = album;
   const dispatch = useDispatch();
 
+  document.title = `${album.artists}`;
+
   useEffect(() => {
     dispatch(Actions.albumDetail(params, token));
     dispatch(PLayerActions.clearTrack());
-  }, []);
+  }, [token]);
+
+  useEffect(() => {
+    document.title = `${album.artists} | ${track_name}`;
+  }, [track_name]);
 
   const setAudio = (url, track_name) => {
     return () => {

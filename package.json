@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.ENVIRONMENT=dev --config ./src/config/webpack.dev --port 3000 --open",
+    "start": "webpack-dev-server --env.ENVIRONMENT=dev --config ./src/config/webpack.dev --port 3100 --open",
     "build": "webpack --env.ENVIRONMENT=prod --config ./src/config/webpack.prod",
     "test": "jest --config ./jest.config.js"
   },
@@ -13,9 +13,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "rc-slider": "^8.7.1",
     "react": "^16.11.0",
-    "react-debounce-input": "^3.2.2",
     "react-dom": "^16.11.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
