@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
-import Home from "../pages/home/Index";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "../pages/home";
 
-const AlbumDetail = lazy(() => import("../pages/album-details/Index"));
+const AlbumDetail = lazy(() => import("../pages/album-details"));
 
 const Routes = () => (
-  <HashRouter>
+  <BrowserRouter>
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -14,7 +14,7 @@ const Routes = () => (
         <Route path="*" component={Home} />
       </Switch>
     </Suspense>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 export default Routes;
