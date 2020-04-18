@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import SearchInput from "../../components/search-input/Index";
+import SearchInput from "../../components/search-input";
 import { Input, Label } from "../../components/search-input/styles";
 
 describe("Tests Search Input", () => {
