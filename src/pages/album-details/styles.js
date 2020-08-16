@@ -9,9 +9,17 @@ export const Container = styled.div`
   grid-row-start: 2;
   grid-row-end: span 2;
 
+  @media (min-width: 360px) and (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+
   .div1 {
     justify-self: end;
     margin-right: 50px;
+
+    @media (min-width: 360px) and (max-width: 700px)  {
+      margin-right: 0px;
+    }
   }
 `;
 
