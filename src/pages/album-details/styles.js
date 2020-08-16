@@ -9,7 +9,7 @@ export const Container = styled.div`
   grid-row-start: 2;
   grid-row-end: span 2;
 
-  @media (min-width: 360px) and (max-width: 700px) {
+  @media (min-width: 200px) and (max-width: 700px) {
     grid-template-columns: 1fr;
   }
 
@@ -17,7 +17,7 @@ export const Container = styled.div`
     justify-self: end;
     margin-right: 50px;
 
-    @media (min-width: 360px) and (max-width: 700px)  {
+    @media (min-width: 200px) and (max-width: 700px)  {
       margin-right: 0px;
     }
   }
@@ -30,6 +30,9 @@ export const Track = styled.div`
     background-color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
   }
+  &:last-child{
+    margin-bottom: 100px;
+   }
 `;
 
 export const TrackNumber = styled.span`
